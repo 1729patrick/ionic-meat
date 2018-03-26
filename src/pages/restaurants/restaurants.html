@@ -1,0 +1,24 @@
+<ion-header>
+
+    <ion-navbar color="danger">
+        <ion-title>Restaurantes</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list *ngFor="let restaurant of restaurants">
+
+        <ion-item>
+            <ion-thumbnail item-start>
+                <img [src]="restaurant.imagePath">
+            </ion-thumbnail>
+            <h2>{{ restaurant.name }}</h2>
+            <p>{{ restaurant.category }}</p>
+            <button ion-button clear item-end (click)="pushRestaurant(restaurant)">Ver</button>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

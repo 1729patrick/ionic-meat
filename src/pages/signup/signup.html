@@ -1,0 +1,31 @@
+<ion-header>
+
+    <ion-navbar color="danger">
+        <ion-title>Sign Up</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="signUpForm">
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+    </form>
+    <div class="margin-top">
+        <button ion-button color="danger" block outline (click)="onSignUp()">Create Account</button>
+    </div>
+
+</ion-content>
