@@ -9,16 +9,17 @@
 
 <ion-content padding>
 
-    <ion-list *ngFor="let restaurant of restaurants">
+    <ion-list *ngFor="let restaurant of restaurants"  (click)="restaurantDetail(restaurant.id)">
 
         <ion-item>
             <ion-thumbnail item-start>
                 <img [src]="restaurant.imagePath">
             </ion-thumbnail>
-            <h2>{{ restaurant.name }}</h2>
+            <h2> {{ restaurant.name }}</h2>
             <p>{{ restaurant.category }}</p>
-            <button ion-button clear item-end (click)="pushRestaurant(restaurant)">Ver</button>
+            <button ion-button clear item-end>Ver</button>
         </ion-item>
+
     </ion-list>
 
 </ion-content>

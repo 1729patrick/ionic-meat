@@ -1,0 +1,21 @@
+<ion-header>
+
+    <ion-navbar color="danger">
+        <ion-title>{{restaurant?.name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card>
+        <img [src] = "restaurant?.imagePath"/>
+        <ion-card-content>
+            <p><strong>Categoria:</strong> {{ restaurant?.category }}</p>
+            <p><strong>Quem somos:</strong> {{ restaurant?.about }}</p>
+            <p><strong>Horários:</strong> {{ restaurant?.hours }}</p>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

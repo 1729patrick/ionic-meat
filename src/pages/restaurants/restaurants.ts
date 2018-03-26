@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantService } from './restaurant/restaurants.service';
+import { RestaurantDetailPage } from '../restaurant-detail/restaurant-detail';
+
 
 
 
@@ -22,8 +24,9 @@ export class RestaurantsPage {
         .subscribe(restaurants => this.restaurants = restaurants); //para pegar os valor do arquivo json e salvar na variavel restaurants
     }
 
-
-
-
-
+    restaurantDetail(id): void{
+        this.navCtrl.push(RestaurantDetailPage,{
+            'restaurantId': id,
+        });
+    }
 }

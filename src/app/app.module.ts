@@ -12,7 +12,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { RestaurantsPage } from '../pages/restaurants/restaurants';
 import { RestaurantService } from '../pages/restaurants/restaurant/restaurants.service';
-
+import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
+import { TabsPage } from '../pages/tabs/tabs';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { RestaurantService } from '../pages/restaurants/restaurant/restaurants.s
         LoginPage,
         SignupPage,
         WelcomePage,
-        RestaurantsPage
+        RestaurantsPage,
+       RestaurantDetailPage,
+        TabsPage
     ],
     imports: [
         BrowserModule,
@@ -36,7 +39,9 @@ import { RestaurantService } from '../pages/restaurants/restaurant/restaurants.s
         LoginPage,
         SignupPage,
         WelcomePage,
-        RestaurantsPage
+        RestaurantsPage,
+       RestaurantDetailPage,
+        TabsPage
     ],
     providers: [
         RestaurantService,

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+//import { LoginPage } from '../login/login';
 import { RestaurantsPage } from '../restaurants/restaurants';
+import { TabsPage } from '../tabs/tabs';
 
 
 
@@ -22,6 +23,6 @@ export class WelcomePage {
             this.navCtrl.setRoot(RestaurantsPage);
         }
         pushLogin():void{
-            this.navCtrl.setRoot(LoginPage);
+            this.navCtrl.setRoot(TabsPage);
         }
     }

@@ -10,11 +10,16 @@ export class RestaurantService {
 
     constructor(
         public httpClient: HttpClient,
-    ){  }
+    ){
+
+    }
 
     showRestaurants(): Observable<Restaurant[]> {
         return this.httpClient.get<Restaurant[]>(`${API}/restaurants`); //para pegar todos os dados json de http://localhost:3000/restaurants
+    }
 
+    restaurantById(id: string): Observable<Restaurant> {
+        return this.httpClient.get<Restaurant>(`${API}/restaurants/${id}`)
     }
 
 }
