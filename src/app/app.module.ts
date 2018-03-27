@@ -12,8 +12,13 @@ import { SignupPage } from '../pages/signup/signup';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { RestaurantsPage } from '../pages/restaurants/restaurants';
 import { RestaurantService } from '../pages/restaurants/restaurant/restaurants.service';
-import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
+// import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
 import { TabsPage } from '../pages/tabs/tabs';
+// import { MenuPage } from '../pages/menu/menu';
+// import { ReviewsPage } from '../pages/reviews/reviews';
+import { ReviewDetailPage } from '../pages/review-detail/review-detail';
+
+
 
 
 @NgModule({
@@ -24,13 +29,21 @@ import { TabsPage } from '../pages/tabs/tabs';
         SignupPage,
         WelcomePage,
         RestaurantsPage,
-       RestaurantDetailPage,
-        TabsPage
+        // RestaurantDetailPage,
+        TabsPage,
+        // MenuPage,
+        // ReviewsPage,
+        ReviewDetailPage
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp, {
+            backButtonText: 'Go Back',
+            modalEnter: 'modal-slide-in',
+            modalLeave: 'modal-slide-out',
+            tabsPlacement: 'bottom'
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -40,8 +53,11 @@ import { TabsPage } from '../pages/tabs/tabs';
         SignupPage,
         WelcomePage,
         RestaurantsPage,
-       RestaurantDetailPage,
-        TabsPage
+        // RestaurantDetailPage,
+        TabsPage,
+        // MenuPage,
+        // ReviewsPage,
+        ReviewDetailPage
     ],
     providers: [
         RestaurantService,

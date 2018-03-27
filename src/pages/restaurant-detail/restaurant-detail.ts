@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
 import { RestaurantService } from '../../pages/restaurants/restaurant/restaurants.service';
 import { Restaurant } from '../restaurants/restaurant/restaurant.model';
+import { RestaurantsPage } from '../restaurants/restaurants';
 
 @IonicPage()
 @Component({
@@ -10,19 +10,31 @@ import { Restaurant } from '../restaurants/restaurant/restaurant.model';
     templateUrl: 'restaurant-detail.html',
 })
 export class RestaurantDetailPage {
-    public restaurant: Restaurant;
-    
+    restaurant: Restaurant;
+
     constructor(
         public navCtrl: NavController,
-        public httpClient: HttpClient,
         public restaurantService: RestaurantService,
         public navParams: NavParams) {
 
-            let id = this.navParams.get('restaurantId');
-            //alert(url + id);
-
+            let id = this.navParams.data.restaurantId;
             this.restaurantService.restaurantById(id)
-            .subscribe(restaurant => this.restaurant = restaurant);
-
+            .subscribe(restaurant => {
+                this.restaurant = restaurant;
+            })
         }
+
+        ionViewDidLoad(){
+            console.log("Entrou em Detalhes.")
+        }
+
+        ionViewWillLeave(){
+            console.log("Saiu de Detalhes.")
+        }
+
+        pushHome(): void{
+            this.navCtrl.setRoot(RestaurantsPage);
+        }
+
+
     }

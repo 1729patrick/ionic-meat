@@ -1,7 +1,16 @@
 <ion-header>
-
-    <ion-navbar color="danger">
-        <ion-title>{{restaurant?.name}}</ion-title>
+    <ion-navbar color="danger" >
+        <ion-buttons>
+            <button ion-button icon-only (click)="pushHome()">
+                <ion-icon name="ios-home-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title class="center">{{restaurant?.name}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="pushHome()">
+                <ion-icon name="ios-cart-outline"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
@@ -10,7 +19,9 @@
 <ion-content>
 
     <ion-card>
-        <img [src] = "restaurant?.imagePath"/>
+        <ion-thumbnail item-start>
+            <img [src]="restaurant?.imagePath">
+        </ion-thumbnail>
         <ion-card-content>
             <p><strong>Categoria:</strong> {{ restaurant?.category }}</p>
             <p><strong>Quem somos:</strong> {{ restaurant?.about }}</p>

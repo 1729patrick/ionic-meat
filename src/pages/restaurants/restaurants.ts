@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantService } from './restaurant/restaurants.service';
-import { RestaurantDetailPage } from '../restaurant-detail/restaurant-detail';
-
-
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -18,15 +16,22 @@ export class RestaurantsPage {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public restaurantService: RestaurantService,
-    ) {
-        this.restaurantService.showRestaurants()
-        .subscribe(restaurants => this.restaurants = restaurants); //para pegar os valor do arquivo json e salvar na variavel restaurants
-    }
+        public restaurantService: RestaurantService) {
+            this.restaurantService.showRestaurants()
+            .subscribe(restaurants =>  this.restaurants = restaurants); //para pegar os valor do arquivo json e salvar na variavel restaurants
+        }
 
-    restaurantDetail(id): void{
-        this.navCtrl.push(RestaurantDetailPage,{
-            'restaurantId': id,
-        });
+        ionViewDidLoad(){
+            console.log("Entrou em Restaurantes.");
+        }
+
+        ionViewWillLeave(){
+            console.log("Saiu de Restaurantes.");
+        }
+
+        restaurantDetail(id): void{
+            this.navCtrl.push(TabsPage, {
+                'restaurantId': id
+            });
+        }
     }
-}

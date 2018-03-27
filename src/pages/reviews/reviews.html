@@ -1,18 +1,28 @@
-<!--
-  Generated template for the ReviewsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Reviews</ion-title>
-  </ion-navbar>
+    <ion-navbar color="danger">
+        <ion-buttons>
+            <button ion-button icon-only (click)="pushHome()">
+                <ion-icon name="ios-home-outline"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Avaliações</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-list padding>
+        <ion-item *ngFor="let review of reviews; let i = index" (click)="reviewDetail(i)"><!--para pegar a posicao do comentario no array-->
+            <ion-avatar item-start>
+                <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ben.png">
+            </ion-avatar>
+            <h3>Avaliação: {{review?.rating}}</h3>
+            <h3>Comentário: {{review?.comments}}</h3>
+            <p>Nome: {{review?.name}}</p>
+        </ion-item>
+    </ion-list>
+
 
 </ion-content>

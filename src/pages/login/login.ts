@@ -12,27 +12,31 @@ import { RestaurantsPage } from '../restaurants/restaurants';
 export class LoginPage {
     loginForm: FormGroup;
 
-
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public formBuilder: FormBuilder
-    ) {
-        this.loginForm = this.formBuilder.group({
-            username: this.formBuilder.control('', [Validators.required]),
-            password: this.formBuilder.control('', [Validators.required]),
+        public formBuilder: FormBuilder) {
 
-        })
+            this.loginForm = this.formBuilder.group({
+                username: this.formBuilder.control('', [Validators.required]),
+                password: this.formBuilder.control('', [Validators.required]),
+            })
+        }
+
+        ionViewDidLoad(){
+            console.log("Entrou em login.")
+        }
+
+        ionViewWillLeave(){
+            console.log("Saiu de login.")
+        }
+
+        onLogin(): void{
+            this.navCtrl.setRoot(RestaurantsPage);
+        }
+
+        pushSignUp(): void{
+            this.navCtrl.setRoot(SignupPage)
+        }
+
     }
-
-
-    onLogin(): void{
-        console.log(this.loginForm.value);
-        this.navCtrl.setRoot(RestaurantsPage);
-    }
-
-    pushSignUp(): void{
-        this.navCtrl.setRoot(SignupPage)
-    }
-
-}

@@ -25,12 +25,18 @@ export class SignupPage {
             })
         }
 
-        ionViewDidLoad() {
-            console.log('ionViewDidLoad SignupPage');
+        ionViewDidLoad(){
+
+
+            console.log("Entrou em SignUp.")
         }
 
+        ionViewWillLeave(){
+            console.log("Saiu de SignUp.")
+        }
+
+
         onSignUp(): void{
-            console.log(this.signUpForm.value);
             let alert = this.alertCtrl.create({
                 title: 'Bem-vindo ao Meat!',
                 buttons: ['Ok']
