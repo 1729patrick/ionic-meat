@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RestaurantsPage } from '../restaurants/restaurants';
-import { RestaurantService } from '../restaurants/restaurant/restaurants.service';
-import { Restaurant } from '../restaurants/restaurant/restaurant.model';
-import { Observable } from 'rxjs/Observable';
-//import { ReviewDetailPage } from '../review-detail/review-detail';
+import { RestaurantService } from '../../providers/restaurant/restaurants.service';
+import { Restaurant } from'../../providers/restaurant/restaurant.model';
 import { CartPage } from '../cart/cart';
 
 
@@ -15,13 +13,19 @@ import { CartPage } from '../cart/cart';
 })
 export class ReviewsPage {
     restaurant: Restaurant;
-    reviews: Observable<any>;
-    click: boolean;
+    reviews: {
+        name: string,
+        comments: string,
+        rating: string
+    };
+    total: number = 0;
+
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public restaurantService: RestaurantService) {
+        public restaurantService: RestaurantService,
+        public alertCtrl: AlertController) {
 
             this.restaurantService.restaurantReviews(this.navParams.data.restaurantId)
             .subscribe(reviews => {
@@ -41,15 +45,20 @@ export class ReviewsPage {
             this.navCtrl.setRoot(RestaurantsPage);
         }
 
-        reviewDetail(): void {
-            /*this.navCtrl.push(ReviewDetailPage, {
-            'reviewParams': this.reviews[id],
-        });*/
-        this.click = true;
-    }
+        showAlert(i){
+            let alert = this.alertCtrl.create({
+                title: `Avaliação de ${this.reviews[i].name}!`,
+                subTitle: `${this.reviews[i].comments}`,
+                buttons: ['OK']
+            });
+            alert.setMode("ios");
+            alert.present();
+        }
 
-    pushCart(): void {
-        this.navCtrl.push(CartPage);
-    }
+        pushCart(): void{
+            this.navCtrl.push(CartPage, {
+                'total': this.total
+            })
+        }
 
-}
+    }

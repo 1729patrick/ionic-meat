@@ -19,14 +19,14 @@
 <ion-content padding>
 
     <ion-list>
-        <ion-item *ngFor="let menu of menu">
+        <ion-item *ngFor="let menu of menu; let i = index">
             <ion-thumbnail item-start>
                 <img [src]="menu.imagePath">
             </ion-thumbnail>
             <h2>{{ menu.name }}</h2>
             <h3>{{ menu.description  }}</h3>
             <h3>{{ menu.price  | currency:'BRL':true }}</h3>
-            <button ion-button clear item-end (click)="addCart(menu.price)">Adicionar</button>
+            <button ion-button clear item-end (click)="addCart(i)">Adicionar</button>
         </ion-item>
     </ion-list>
 

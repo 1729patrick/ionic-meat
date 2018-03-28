@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestaurantService } from '../../pages/restaurants/restaurant/restaurants.service';
-import { Restaurant } from '../restaurants/restaurant/restaurant.model';
+import { RestaurantService } from '../../providers/restaurant/restaurants.service';
+import { Restaurant } from'../../providers/restaurant/restaurant.model';
 import { RestaurantsPage } from '../restaurants/restaurants';
 import { CartPage } from '../cart/cart';
 
@@ -12,6 +12,7 @@ import { CartPage } from '../cart/cart';
 })
 export class RestaurantDetailPage {
     restaurant: Restaurant;
+    total: number = 0;
 
     constructor(
         public navCtrl: NavController,
@@ -37,8 +38,10 @@ export class RestaurantDetailPage {
             this.navCtrl.setRoot(RestaurantsPage);
         }
 
-        pushCart(): void {
-            this.navCtrl.push(CartPage);
+        pushCart(): void{
+            this.navCtrl.push(CartPage, {
+                'total': this.total
+            })
         }
 
 

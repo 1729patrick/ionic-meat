@@ -11,11 +11,14 @@ import { WelcomePage } from '../pages/welcome/welcome';
 export class MyApp {
     rootPage:any = WelcomePage;
 
-    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-        platform.ready().then(() => {
-
-            statusBar.styleDefault();
-            splashScreen.hide();
-        });
+    constructor(
+        platform: Platform,
+        statusBar: StatusBar,
+        splashScreen: SplashScreen) {
+            platform.ready().then(() => {
+                statusBar.overlaysWebView(true);
+                statusBar.backgroundColorByHexString('#ff3333');
+                //splashScreen.hide();
+            });
+        }
     }
-}

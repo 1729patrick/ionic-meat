@@ -11,13 +11,10 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { RestaurantsPage } from '../pages/restaurants/restaurants';
-import { RestaurantService } from '../pages/restaurants/restaurant/restaurants.service';
-// import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
+import { RestaurantService } from '../providers/restaurant/restaurants.service';
 import { TabsPage } from '../pages/tabs/tabs';
-// import { MenuPage } from '../pages/menu/menu';
-// import { ReviewsPage } from '../pages/reviews/reviews';
-import { ReviewDetailPage } from '../pages/review-detail/review-detail';
 import { CartPage } from '../pages/cart/cart'
+import { CartService } from '../providers/cart/cart.service';
 
 
 
@@ -30,11 +27,7 @@ import { CartPage } from '../pages/cart/cart'
         SignupPage,
         WelcomePage,
         RestaurantsPage,
-        // RestaurantDetailPage,
         TabsPage,
-        // MenuPage,
-        // ReviewsPage,
-        ReviewDetailPage,
         CartPage
     ],
     imports: [
@@ -56,18 +49,15 @@ import { CartPage } from '../pages/cart/cart'
         SignupPage,
         WelcomePage,
         RestaurantsPage,
-        // RestaurantDetailPage,
         TabsPage,
-        // MenuPage,
-        // ReviewsPage,
-        ReviewDetailPage,
         CartPage
     ],
     providers: [
         RestaurantService,
+        CartService,
         StatusBar,
         SplashScreen,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
     ]
 })
 export class AppModule {}

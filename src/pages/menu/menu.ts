@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { RestaurantsPage } from '../restaurants/restaurants';
-import { RestaurantService } from '../restaurants/restaurant/restaurants.service';
+import { RestaurantService } from '../../providers/restaurant/restaurants.service';
+import { CartService } from '../../providers/cart/cart.service';
+import { MenuItem } from '../../providers/cart/cart.model';
 import { CartPage } from '../cart/cart';
 
 
@@ -11,18 +13,20 @@ import { CartPage } from '../cart/cart';
     templateUrl: 'menu.html',
 })
 export class MenuPage {
-    menu: Array<any>;
-    total: number = 0;
+    menu: MenuItem;
+    //access: boolean = false;
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public restaurantService: RestaurantService,
+        public cartService: CartService,
         public toastCtrl: ToastController) {
 
-            //let id = this.navParams.data.restaurantId; //pega o id do restaurante por parametro pela tab
+            let id = this.navParams.data.restaurantId; //pega o id do restaurante por parametro pela tab
+            //this.access = this.navParams.data.access;
 
-            this.restaurantService.restaurantMenu(this.navParams.data.restaurantId)
+            this.restaurantService.restaurantMenu(id)
             .subscribe(menu => this.menu = menu);
         }
 
@@ -38,15 +42,9 @@ export class MenuPage {
             this.navCtrl.setRoot(RestaurantsPage);
         }
 
-        pushCart(): void {
-            this.navCtrl.push(CartPage, {
-                'total': this.total,
-            });
-        }
 
-        addCart(prince) {
-            this.total = this.restaurantService.addItem(prince);
-            console.log(this.total);
+        addCart(i): void  {
+            this.cartService.addItem(this.menu[i].price);
 
             let toast = this.toastCtrl.create({
                 message: 'Item adicionado no carrinho.',
@@ -54,4 +52,19 @@ export class MenuPage {
             });
             toast.present();
         };
-    }
+
+        pushCart(): void{
+            this.navCtrl.push(CartPage);
+        }
+
+        /*
+        ionViewCanEnter() {
+        if(!this.access){
+        this.navCtrl.setRoot(WelcomePage);
+        return false
+    }else{
+    return true;
+}
+}
+*/
+}

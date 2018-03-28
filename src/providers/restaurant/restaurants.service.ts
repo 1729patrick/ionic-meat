@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { API } from '../../../app/app.api'
+import { API } from '../../app/app.api';
 import { Restaurant } from './restaurant.model';
-
 
 @Injectable()
 export class RestaurantService {
-    //quantity: number;
-    total: number = 0;
+
     constructor(
         public httpClient: HttpClient,
-    ){   }
+    ){  }
 
     showRestaurants(): Observable<Restaurant[]> {
         return this.httpClient.get<Restaurant[]>(`${API}/restaurants`); //para pegar todos os dados json de http://localhost:3000/restaurants
@@ -27,12 +25,6 @@ export class RestaurantService {
 
     restaurantMenu(id: string): Observable<any>{
         return this.httpClient.get(`${API}/restaurants/${id}/menu`);
-    }
-
-    addItem(prince): number{
-        //this.quantity++;
-        this.total += prince;
-        return this.total;
     }
 
 }

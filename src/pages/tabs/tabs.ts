@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController } from 'ionic-angular';
-import { RestaurantService } from '../restaurants/restaurant/restaurants.service';
+import { NavParams, NavController } from 'ionic-angular';
+import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 
 @Component({
     selector: 'page-tabs',
@@ -9,6 +9,7 @@ import { RestaurantService } from '../restaurants/restaurant/restaurants.service
 export class TabsPage {
     restaurantParams: {
         restaurantId: String;
+        //access: boolean
     }
 
     restaurantRoot = 'RestaurantDetailPage';
@@ -21,7 +22,8 @@ export class TabsPage {
         public navCtrl: NavController) {
 
             this.restaurantParams = {
-                restaurantId: this.navParams.get('restaurantId')  //restaurantId recebe o id passado pelo restaurant
+                restaurantId: this.navParams.get('restaurantId'),  //restaurantId recebe o id passado pelo restaurant
+                //access: true
             }
         }
 
@@ -29,8 +31,9 @@ export class TabsPage {
             console.log("Entrou em tabs.");
         }
 
-        ionViewWillLeave(){
+        ionViewWillLeave() {
             this.navCtrl.popToRoot();
             console.log("Saiu de tabs.");
         }
+
     }

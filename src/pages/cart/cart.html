@@ -1,6 +1,7 @@
 <ion-header>
     <ion-navbar color="danger">
-        <ion-title>Carrinho</ion-title>
+        <ion-title *ngIf="total == 0">Carrinho Vazio.</ion-title>
+        <ion-title *ngIf="total > 0">Finalize o pedido.</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -8,12 +9,13 @@
 <ion-content padding>
 
     <span *ngIf="total == 0">
-        <h5 class="text-center">Carrinho vazio!</h5>
+        <!--<h5 class="text-center">Carrinho vazio!</h5>-->
         <ion-img class="img" src="assets/imgs/404.png"></ion-img>
     </span>
 
-    <span *ngIf="total > 0">
-        <h1 class="text-center" *ngIf="total != 0">Total: {{ total }}</h1>
+    <span *ngIf="total > 0" class="text-center">
+        <h5>Total: {{ total | currency:'BRL':true}}</h5>
+        <button ion-button color="dark" (click)="clearCart()">Limpar Carrinho</button>
     </span>
 
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Restaurant } from './restaurant/restaurant.model';
-import { RestaurantService } from './restaurant/restaurants.service';
+import { Restaurant } from'../../providers/restaurant/restaurant.model';
+import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 import { TabsPage } from '../tabs/tabs';
 import { LoginPage } from '../login/login';
 
