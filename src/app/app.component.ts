@@ -17,7 +17,7 @@ export class MyApp {
         splashScreen: SplashScreen) {
             platform.ready().then(() => {
                 statusBar.overlaysWebView(true);
-                statusBar.backgroundColorByHexString('#ff3333');
+                statusBar.backgroundColorByHexString('#f53d3d');
                 //splashScreen.hide();
             });
         }
