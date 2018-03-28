@@ -1,14 +1,13 @@
 <ion-header>
 
     <ion-navbar color="danger">
-        <ion-buttons start>
+        <ion-buttons >
             <button ion-button icon-only (click)="pushHome()">
-                <ion-icon name="ios-home-outline"></ion-icon>
+                <ion-icon name="ios-list-box-outline"></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title text-align: center>Menu</ion-title>
         <ion-buttons end>
-            <button ion-button icon-only (click)="pushHome()">
+            <button ion-button icon-only (click)="pushCart()">
                 <ion-icon name="ios-cart-outline"></ion-icon>
             </button>
         </ion-buttons>
@@ -24,10 +23,10 @@
             <ion-thumbnail item-start>
                 <img [src]="menu.imagePath">
             </ion-thumbnail>
-            <h2>{{menu.name}}</h2>
-            <h3>{{menu.description}}</h3>
-            <h3>{{menu.price  | currency:'BRL':true}}</h3>
-            <button ion-button clear item-end>Adicionar</button>
+            <h2>{{ menu.name }}</h2>
+            <h3>{{ menu.description  }}</h3>
+            <h3>{{ menu.price  | currency:'BRL':true }}</h3>
+            <button ion-button clear item-end (click)="addCart(menu.price)">Adicionar</button>
         </ion-item>
     </ion-list>
 

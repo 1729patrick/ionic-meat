@@ -20,11 +20,11 @@ export class ReviewDetailPage {
             //console.log(this.reviews)
         }
 
-        ionViewDidLoad(){
+        ionViewDidLoad() {
             console.log("Entrou em Detalhes.")
         }
 
-        ionViewWillLeave(){
+        ionViewWillLeave() {
             console.log("Entrou de Detalhes.")
         }
     }

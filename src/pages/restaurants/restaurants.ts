@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantService } from './restaurant/restaurants.service';
 import { TabsPage } from '../tabs/tabs';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -21,17 +22,22 @@ export class RestaurantsPage {
             .subscribe(restaurants =>  this.restaurants = restaurants); //para pegar os valor do arquivo json e salvar na variavel restaurants
         }
 
-        ionViewDidLoad(){
+        ionViewDidLoad() {
+            this.navCtrl.popToRoot();
             console.log("Entrou em Restaurantes.");
         }
 
-        ionViewWillLeave(){
+        ionViewWillLeave() {
             console.log("Saiu de Restaurantes.");
         }
 
-        restaurantDetail(id): void{
+        restaurantDetail(id): void {
             this.navCtrl.push(TabsPage, {
                 'restaurantId': id
             });
+        }
+
+        pushLogin(): void {
+            this.navCtrl.setRoot(LoginPage)
         }
     }

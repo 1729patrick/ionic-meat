@@ -17,6 +17,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 // import { MenuPage } from '../pages/menu/menu';
 // import { ReviewsPage } from '../pages/reviews/reviews';
 import { ReviewDetailPage } from '../pages/review-detail/review-detail';
+import { CartPage } from '../pages/cart/cart'
 
 
 
@@ -33,16 +34,18 @@ import { ReviewDetailPage } from '../pages/review-detail/review-detail';
         TabsPage,
         // MenuPage,
         // ReviewsPage,
-        ReviewDetailPage
+        ReviewDetailPage,
+        CartPage
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         IonicModule.forRoot(MyApp, {
-            backButtonText: 'Go Back',
+            backButtonText: '',
             modalEnter: 'modal-slide-in',
             modalLeave: 'modal-slide-out',
-            tabsPlacement: 'bottom'
+            tabsPlacement: 'bottom',
+
         })
     ],
     bootstrap: [IonicApp],
@@ -57,7 +60,8 @@ import { ReviewDetailPage } from '../pages/review-detail/review-detail';
         TabsPage,
         // MenuPage,
         // ReviewsPage,
-        ReviewDetailPage
+        ReviewDetailPage,
+        CartPage
     ],
     providers: [
         RestaurantService,

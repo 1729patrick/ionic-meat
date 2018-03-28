@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RestaurantsPage } from '../restaurants/restaurants';
+import { WelcomePage } from '../welcome/welcome';
 
 
 @IonicPage()
@@ -25,24 +26,20 @@ export class SignupPage {
             })
         }
 
-        ionViewDidLoad(){
-
-
-            console.log("Entrou em SignUp.")
+        ionViewDidLoad() {
+            console.log("Entrou em SignUp.");
         }
 
-        ionViewWillLeave(){
-            console.log("Saiu de SignUp.")
+        ionViewWillLeave() {
+            console.log("Saiu de SignUp.");
         }
 
-
-        onSignUp(): void{
-            let alert = this.alertCtrl.create({
-                title: 'Bem-vindo ao Meat!',
-                buttons: ['Ok']
-            });
-            alert.present();
+        onSignUp(): void {
             this.navCtrl.setRoot(RestaurantsPage);
+        }
+
+        pushHome(): void {
+            this.navCtrl.setRoot(WelcomePage);
         }
 
     }

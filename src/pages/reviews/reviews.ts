@@ -4,7 +4,8 @@ import { RestaurantsPage } from '../restaurants/restaurants';
 import { RestaurantService } from '../restaurants/restaurant/restaurants.service';
 import { Restaurant } from '../restaurants/restaurant/restaurant.model';
 import { Observable } from 'rxjs/Observable';
-import { ReviewDetailPage } from '../review-detail/review-detail';
+//import { ReviewDetailPage } from '../review-detail/review-detail';
+import { CartPage } from '../cart/cart';
 
 
 @IonicPage()
@@ -15,6 +16,7 @@ import { ReviewDetailPage } from '../review-detail/review-detail';
 export class ReviewsPage {
     restaurant: Restaurant;
     reviews: Observable<any>;
+    click: boolean;
 
     constructor(
         public navCtrl: NavController,
@@ -27,22 +29,27 @@ export class ReviewsPage {
             });
         }
 
-        ionViewDidLoad(){
+        ionViewDidLoad() {
             console.log("Entrou em Reviews.")
         }
 
-        ionViewWillLeave(){
+        ionViewWillLeave() {
             console.log("Saiu de Reviews.")
         }
 
-        pushHome(): void{
+        pushHome(): void {
             this.navCtrl.setRoot(RestaurantsPage);
         }
 
-        reviewDetail(id): void{
-            this.navCtrl.push(ReviewDetailPage, {
-                'reviewParams': this.reviews[id],
-            });
-        }
-
+        reviewDetail(): void {
+            /*this.navCtrl.push(ReviewDetailPage, {
+            'reviewParams': this.reviews[id],
+        });*/
+        this.click = true;
     }
+
+    pushCart(): void {
+        this.navCtrl.push(CartPage);
+    }
+
+}

@@ -2,14 +2,18 @@
 
     <ion-navbar color="danger">
         <ion-title>Restaurantes</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only end (click)="pushLogin()">
+                <ion-icon name="ios-log-in-outline"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
 
-    <ion-list *ngFor="let restaurant of restaurants"  (click)="restaurantDetail(restaurant.id)">
+    <ion-list *ngFor="let restaurant of restaurants" (click)="restaurantDetail(restaurant.id)">
 
         <ion-item>
             <ion-thumbnail item-start>

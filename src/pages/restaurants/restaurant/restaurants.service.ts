@@ -7,7 +7,8 @@ import { Restaurant } from './restaurant.model';
 
 @Injectable()
 export class RestaurantService {
-
+    //quantity: number;
+    total: number = 0;
     constructor(
         public httpClient: HttpClient,
     ){   }
@@ -26,6 +27,12 @@ export class RestaurantService {
 
     restaurantMenu(id: string): Observable<any>{
         return this.httpClient.get(`${API}/restaurants/${id}/menu`);
+    }
+
+    addItem(prince): number{
+        //this.quantity++;
+        this.total += prince;
+        return this.total;
     }
 
 }

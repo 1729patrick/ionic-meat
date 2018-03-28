@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
 import { RestaurantsPage } from '../restaurants/restaurants';
+import { WelcomePage } from '../welcome/welcome';
 
 @IonicPage()
 @Component({
@@ -23,20 +24,24 @@ export class LoginPage {
             })
         }
 
-        ionViewDidLoad(){
+        ionViewDidLoad() {
             console.log("Entrou em login.")
         }
 
-        ionViewWillLeave(){
+        ionViewWillLeave() {
             console.log("Saiu de login.")
         }
 
-        onLogin(): void{
+        onLogin(): void {
             this.navCtrl.setRoot(RestaurantsPage);
         }
 
-        pushSignUp(): void{
-            this.navCtrl.setRoot(SignupPage)
+        pushSignUp(): void {
+            this.navCtrl.setRoot(SignupPage);
+        }
+
+        pushHome(): void {
+            this.navCtrl.setRoot(WelcomePage);
         }
 
     }

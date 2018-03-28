@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestaurantService } from '../../pages/restaurants/restaurant/restaurants.service';
 import { Restaurant } from '../restaurants/restaurant/restaurant.model';
 import { RestaurantsPage } from '../restaurants/restaurants';
+import { CartPage } from '../cart/cart';
 
 @IonicPage()
 @Component({
@@ -24,16 +25,20 @@ export class RestaurantDetailPage {
             })
         }
 
-        ionViewDidLoad(){
+        ionViewDidLoad() {
             console.log("Entrou em Detalhes.")
         }
 
-        ionViewWillLeave(){
+        ionViewWillLeave() {
             console.log("Saiu de Detalhes.")
         }
 
-        pushHome(): void{
+        pushHome(): void {
             this.navCtrl.setRoot(RestaurantsPage);
+        }
+
+        pushCart(): void {
+            this.navCtrl.push(CartPage);
         }
 
 
