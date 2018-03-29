@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { RestaurantsPage } from '../restaurants/restaurants';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 import { CartService } from '../../providers/cart/cart.service';
 import { MenuItem } from '../../providers/cart/cart.model';
-import { CartPage } from '../cart/cart';
+
 
 
 @IonicPage()
@@ -13,15 +12,15 @@ import { CartPage } from '../cart/cart';
     templateUrl: 'menu.html',
 })
 export class MenuPage {
-    menu: MenuItem;
-    //access: boolean = false;
+    menu: MenuItem[];
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public restaurantService: RestaurantService,
         public cartService: CartService,
-        public toastCtrl: ToastController) {
+        public toastCtrl: ToastController,
+        public alertCtrl: AlertController) {
 
             let id = this.navParams.data.restaurantId; //pega o id do restaurante por parametro pela tab
             //this.access = this.navParams.data.access;
@@ -38,33 +37,30 @@ export class MenuPage {
             console.log("Saiu de menu.")
         }
 
-        pushHome(): void {
-            this.navCtrl.setRoot(RestaurantsPage);
-        }
+        showAlert(i){
+            let alert = this.alertCtrl.create({
+                title: `${this.menu[i].name}`,
+                subTitle: `${this.menu[i].description}`,
+                message: `R$${this.menu[i].price}0`,
+                buttons: [{
+                    text: 'Confirmar',
+                    handler: () => {
+                        this.addCart(i);
 
+                        let toast = this.toastCtrl.create({
+                            message: 'Item adicionado no carrinho.',
+                            duration: 3000,
+                        });
+                        toast.present();
+                    }
+                }
+            ]
+        });
+        alert.setMode("ios");
+        alert.present();
+    }
+    addCart(i) {
+        this.cartService.addItem(this.menu[i].price);
+    }
 
-        addCart(i): void  {
-            this.cartService.addItem(this.menu[i].price);
-
-            let toast = this.toastCtrl.create({
-                message: 'Item adicionado no carrinho.',
-                duration: 3000,
-            });
-            toast.present();
-        };
-
-        pushCart(): void{
-            this.navCtrl.push(CartPage);
-        }
-
-        /*
-        ionViewCanEnter() {
-        if(!this.access){
-        this.navCtrl.setRoot(WelcomePage);
-        return false
-    }else{
-    return true;
-}
-}
-*/
 }

@@ -16,7 +16,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { CartPage } from '../pages/cart/cart'
 import { CartService } from '../providers/cart/cart.service';
 
-
+import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
+import { MenuPage } from '../pages/menu/menu';
+import { ReviewsPage } from '../pages/reviews/reviews';
 
 
 @NgModule({
@@ -28,7 +30,10 @@ import { CartService } from '../providers/cart/cart.service';
         WelcomePage,
         RestaurantsPage,
         TabsPage,
-        CartPage
+        CartPage,
+        RestaurantDetailPage,
+        MenuPage,
+        ReviewsPage
     ],
     imports: [
         BrowserModule,
@@ -50,14 +55,17 @@ import { CartService } from '../providers/cart/cart.service';
         WelcomePage,
         RestaurantsPage,
         TabsPage,
-        CartPage
+        CartPage,
+        RestaurantDetailPage,
+        MenuPage,
+        ReviewsPage
     ],
     providers: [
         RestaurantService,
         CartService,
         StatusBar,
         SplashScreen,
-        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        {provide:  ErrorHandler, useClass: IonicErrorHandler},
     ]
 })
 export class AppModule {}

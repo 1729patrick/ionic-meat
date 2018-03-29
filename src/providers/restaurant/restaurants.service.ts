@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { API } from '../../app/app.api';
 import { Restaurant } from './restaurant.model';
+import { MenuItem } from '../cart/cart.model';
 
 @Injectable()
 export class RestaurantService {
@@ -23,8 +24,8 @@ export class RestaurantService {
         return this.httpClient.get(`${API}/restaurants/${id}/reviews`);
     }
 
-    restaurantMenu(id: string): Observable<any>{
-        return this.httpClient.get(`${API}/restaurants/${id}/menu`);
+    restaurantMenu(id: string): Observable<MenuItem[]>{
+        return this.httpClient.get<MenuItem[]>(`${API}/restaurants/${id}/menu`);
     }
 
 }

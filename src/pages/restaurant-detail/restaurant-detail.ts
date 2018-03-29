@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 import { Restaurant } from'../../providers/restaurant/restaurant.model';
-import { RestaurantsPage } from '../restaurants/restaurants';
-import { CartPage } from '../cart/cart';
 
 @IonicPage()
 @Component({
@@ -33,16 +31,5 @@ export class RestaurantDetailPage {
         ionViewWillLeave() {
             console.log("Saiu de Detalhes.")
         }
-
-        pushHome(): void {
-            this.navCtrl.setRoot(RestaurantsPage);
-        }
-
-        pushCart(): void{
-            this.navCtrl.push(CartPage, {
-                'total': this.total
-            })
-        }
-
 
     }

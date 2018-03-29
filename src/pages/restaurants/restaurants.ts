@@ -23,7 +23,6 @@ export class RestaurantsPage {
         }
 
         ionViewDidLoad() {
-            this.navCtrl.popToRoot();
             console.log("Entrou em Restaurantes.");
         }
 
@@ -31,9 +30,10 @@ export class RestaurantsPage {
             console.log("Saiu de Restaurantes.");
         }
 
-        restaurantDetail(id): void {
+        restaurantDetail(id, name): void {
             this.navCtrl.push(TabsPage, {
-                'restaurantId': id
+                'restaurantId': id,
+                'restaurantName': name
             });
         }
 

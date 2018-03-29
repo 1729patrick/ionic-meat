@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
 import { RestaurantsPage } from '../restaurants/restaurants';
 import { WelcomePage } from '../welcome/welcome';
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 
 @IonicPage()
 @Component({
@@ -12,6 +14,7 @@ import { WelcomePage } from '../welcome/welcome';
 })
 export class LoginPage {
     loginForm: FormGroup;
+    time: Observable<string>; //Observable /async
 
     constructor(
         public navCtrl: NavController,
@@ -22,26 +25,30 @@ export class LoginPage {
                 username: this.formBuilder.control('', [Validators.required]),
                 password: this.formBuilder.control('', [Validators.required]),
             })
-        }
-
-        ionViewDidLoad() {
-            console.log("Entrou em login.")
-        }
-
-        ionViewWillLeave() {
-            console.log("Saiu de login.")
-        }
-
-        onLogin(): void {
-            this.navCtrl.setRoot(RestaurantsPage);
-        }
-
-        pushSignUp(): void {
-            this.navCtrl.setRoot(SignupPage);
-        }
-
-        pushHome(): void {
-            this.navCtrl.setRoot(WelcomePage);
-        }
-
+            //Observable /async
+            this.time = new Observable<string>((observer: Subscriber<string>) => {
+            setInterval(() => observer.next(new Date().toString()), 1000);
+        });
+        //Observable /async
     }
+
+    ionViewDidLoad() {
+        console.log("Entrou em login.")
+    }
+
+    ionViewWillLeave() {
+        console.log("Saiu de login.")
+    }
+
+    onLogin(): void {
+        this.navCtrl.setRoot(RestaurantsPage);
+    }
+
+    pushSignUp(): void {
+        this.navCtrl.setRoot(SignupPage);
+    }
+
+    pushHome(): void {
+        this.navCtrl.setRoot(WelcomePage);
+    }
+}

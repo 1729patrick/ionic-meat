@@ -5,6 +5,7 @@ export interface MenuItem {
     description: string;
     price: number;
     imagePath: string;
+    quantity?: number;
 
     /*
     "id": "cup-cake",
