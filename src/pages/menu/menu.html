@@ -16,9 +16,9 @@
             <h2>{{ menu.name }}</h2>
             <h3>{{ menu.description  }}</h3>
             <h3>{{ menu.price  | currency:'BRL'}}</h3>
-            <button ion-button clear item-end (click)="showAlert(i)">Adicionar</button>
+            <button ion-button clear item-end (click)="confirmAdd(i)">Adicionar</button>
         </ion-item>
     </ion-list>
 
-
+    <!-- <button ion-button clear item-end (click)="getCart(i)">Ver carrinho</button> -->
 </ion-content>

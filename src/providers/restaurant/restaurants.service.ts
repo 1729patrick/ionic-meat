@@ -24,6 +24,13 @@ export class RestaurantService {
         return this.httpClient.get(`${API}/restaurants/${id}/reviews`);
     }
 
+    newReview(id, review) {
+        this.httpClient.post(`${API}/restaurants/${id}/reviews`, review)
+        .subscribe(data => {
+            console.log(data);
+        })
+    }
+
     restaurantMenu(id: string): Observable<MenuItem[]>{
         return this.httpClient.get<MenuItem[]>(`${API}/restaurants/${id}/menu`);
     }

@@ -1,43 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
-import { WelcomePage } from '../pages/welcome/welcome';
-import { RestaurantsPage } from '../pages/restaurants/restaurants';
-import { RestaurantService } from '../providers/restaurant/restaurants.service';
-import { TabsPage } from '../pages/tabs/tabs';
+import { AuthProvider } from '../providers/auth/auth';
 import { CartPage } from '../pages/cart/cart'
 import { CartService } from '../providers/cart/cart.service';
-
-import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { MenuPage } from '../pages/menu/menu';
+import { MyApp } from './app.component';
+import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
+import { RestaurantsPage } from '../pages/restaurants/restaurants';
+import { RestaurantService } from '../providers/restaurant/restaurants.service';
 import { ReviewsPage } from '../pages/reviews/reviews';
+import { SignupPage } from '../pages/signup/signup';
+import { TabsPage } from '../pages/tabs/tabs';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 
 @NgModule({
     declarations: [
-        MyApp,
+        CartPage,
         HomePage,
         LoginPage,
-        SignupPage,
-        WelcomePage,
-        RestaurantsPage,
-        TabsPage,
-        CartPage,
-        RestaurantDetailPage,
         MenuPage,
-        ReviewsPage
+        MyApp,
+        RestaurantDetailPage,
+        RestaurantsPage,
+        ReviewsPage,
+        SignupPage,
+        TabsPage,
+        WelcomePage,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
+        IonicStorageModule.forRoot({ name: '__mydb'}),
         IonicModule.forRoot(MyApp, {
             backButtonText: '',
             modalEnter: 'modal-slide-in',
@@ -48,24 +50,26 @@ import { ReviewsPage } from '../pages/reviews/reviews';
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp,
+        CartPage,
         HomePage,
         LoginPage,
-        SignupPage,
-        WelcomePage,
-        RestaurantsPage,
-        TabsPage,
-        CartPage,
-        RestaurantDetailPage,
         MenuPage,
-        ReviewsPage
+        MyApp,
+        RestaurantDetailPage,
+        RestaurantsPage,
+        ReviewsPage,
+        SignupPage,
+        TabsPage,
+        WelcomePage,
     ],
     providers: [
-        RestaurantService,
+        AuthProvider,
         CartService,
-        StatusBar,
+        RestaurantService,
         SplashScreen,
+        StatusBar,
         {provide:  ErrorHandler, useClass: IonicErrorHandler},
+
     ]
 })
 export class AppModule {}

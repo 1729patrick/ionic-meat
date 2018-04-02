@@ -4,6 +4,8 @@ import { RestaurantService } from '../../providers/restaurant/restaurants.servic
 import { CartService } from '../../providers/cart/cart.service';
 import { MenuItem } from '../../providers/cart/cart.model';
 
+import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
 
 
 @IonicPage()
@@ -20,24 +22,18 @@ export class MenuPage {
         public restaurantService: RestaurantService,
         public cartService: CartService,
         public toastCtrl: ToastController,
-        public alertCtrl: AlertController) {
+        public alertCtrl: AlertController,
+        public storage: Storage,
+        public httpClient: HttpClient) {
 
-            let id = this.navParams.data.restaurantId; //pega o id do restaurante por parametro pela tab
+            let id = this.navParams.data.id; //pega o id do restaurante por parametro pela tab
             //this.access = this.navParams.data.access;
 
             this.restaurantService.restaurantMenu(id)
             .subscribe(menu => this.menu = menu);
         }
 
-        ionViewDidLoad() {
-            console.log("Entrou em menu.")
-        }
-
-        ionViewWillLeave() {
-            console.log("Saiu de menu.")
-        }
-
-        showAlert(i){
+        confirmAdd(i): void {
             let alert = this.alertCtrl.create({
                 title: `${this.menu[i].name}`,
                 subTitle: `${this.menu[i].description}`,
@@ -47,8 +43,9 @@ export class MenuPage {
                     handler: () => {
                         this.addCart(i);
 
+
                         let toast = this.toastCtrl.create({
-                            message: 'Item adicionado no carrinho.',
+                            message: `${this.menu[i].name} adicionado no carrinho.`,
                             duration: 3000,
                         });
                         toast.present();
@@ -59,8 +56,11 @@ export class MenuPage {
         alert.setMode("ios");
         alert.present();
     }
-    addCart(i) {
-        this.cartService.addItem(this.menu[i].price);
+
+
+    addCart(id):void {
+        // this.storage.set('item', JSON.stringify(this.menu[id]));
+        this.cartService.addItem(this.menu[id]);
     }
 
 }

@@ -13,6 +13,6 @@ export interface MenuItem {
     "name": "Cup Cake",
     "description": "Cup Cake recheado de Doce de Leite",
     "price": 8.7,
-    "restaurantId": "bread-bakery"
+    "id": "bread-bakery"
     */
 }

@@ -10,17 +10,18 @@ import { Restaurant } from'../../providers/restaurant/restaurant.model';
 })
 export class RestaurantDetailPage {
     restaurant: Restaurant;
-    total: number = 0;
 
     constructor(
         public navCtrl: NavController,
         public restaurantService: RestaurantService,
         public navParams: NavParams) {
 
-            let id = this.navParams.data.restaurantId;
+            let id = this.navParams.data.id;
+
             this.restaurantService.restaurantById(id)
             .subscribe(restaurant => {
                 this.restaurant = restaurant;
+                console.log(this.restaurant)
             })
         }
 

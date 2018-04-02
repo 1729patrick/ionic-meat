@@ -4,8 +4,6 @@ import { LoginPage } from '../login/login';
 import { RestaurantsPage } from '../restaurants/restaurants';
 
 
-
-
 @IonicPage()
 @Component({
     selector: 'page-welcome',

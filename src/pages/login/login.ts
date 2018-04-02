@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
-import { RestaurantsPage } from '../restaurants/restaurants';
 import { WelcomePage } from '../welcome/welcome';
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
+import { AuthProvider } from '../../providers/auth/auth';
+import { RestaurantsPage } from '../restaurants/restaurants';
+
+
 
 @IonicPage()
 @Component({
@@ -14,41 +15,46 @@ import { Subscriber } from 'rxjs/Subscriber';
 })
 export class LoginPage {
     loginForm: FormGroup;
-    time: Observable<string>; //Observable /async
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public formBuilder: FormBuilder) {
+        public formBuilder: FormBuilder,
+        public authService: AuthProvider,
+        public toastCtrl: ToastController) {
 
             this.loginForm = this.formBuilder.group({
                 username: this.formBuilder.control('', [Validators.required]),
                 password: this.formBuilder.control('', [Validators.required]),
             })
-            //Observable /async
-            this.time = new Observable<string>((observer: Subscriber<string>) => {
-            setInterval(() => observer.next(new Date().toString()), 1000);
-        });
-        //Observable /async
-    }
+        }
 
-    ionViewDidLoad() {
-        console.log("Entrou em login.")
-    }
+        ionViewDidLoad() {
+            console.log("Entrou em login.")
+        }
 
-    ionViewWillLeave() {
-        console.log("Saiu de login.")
-    }
+        ionViewWillLeave() {
+            console.log("Saiu de login.")
+        }
 
-    onLogin(): void {
-        this.navCtrl.setRoot(RestaurantsPage);
-    }
+        login(): void {
+            this.authService.login(this.loginForm.value);
+            this.navCtrl.setRoot(RestaurantsPage);
 
-    pushSignUp(): void {
-        this.navCtrl.setRoot(SignupPage);
-    }
+            let toast = this.toastCtrl.create({
+                message: `Olá ${this.loginForm.value.username}, bem-vindo.`,
+                duration: 3000,
+            });
+            toast.present();
+        }
 
-    pushHome(): void {
-        this.navCtrl.setRoot(WelcomePage);
+        pushSignUp(): void {
+            this.navCtrl.setRoot(SignupPage);
+        }
+
+        pushHome(): void {
+            this.navCtrl.setRoot(WelcomePage);
+        }
+
+
     }
-}

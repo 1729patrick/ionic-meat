@@ -9,15 +9,18 @@
 <ion-content>
 
     <ion-list>
-        <ion-item *ngFor="let review of reviews; let i = index" (click)="showAlert(i)"><!--para pegar a posicao do comentario no array-->
+        <ion-item *ngFor="let review of reviews; let i = index" (click)="showReview(i)"><!--para pegar a posicao do comentario no array-->
             <ion-avatar item-start>
                 <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ben.png">
             </ion-avatar>
-            <h3>Avaliação: {{ review?.rating }}</h3>
+            <h3>Nota: {{ review?.rating }}</h3>
             <h3 class="justify">Comentário: {{ review?.comments }}</h3>
             <p>Nome: {{ review?.name }}</p>
             <button ion-button clear item-end >Ver Mais</button>
         </ion-item>
     </ion-list>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="newReview()"><ion-icon name="ios-add-outline"></ion-icon></button>
+    </ion-fab>
 
 </ion-content>

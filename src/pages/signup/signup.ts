@@ -18,7 +18,7 @@ export class SignupPage {
         public navParams: NavParams,
         public formBuilder: FormBuilder,
         public alertCtrl: AlertController) {
-
+            
             this.signUpForm = this.formBuilder.group({
                 name: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
                 password: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),

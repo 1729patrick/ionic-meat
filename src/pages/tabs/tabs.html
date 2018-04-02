@@ -12,8 +12,8 @@
 </ion-header>
 
 
-<ion-tabs  selectedIndex="1">
-    <ion-tab [root]="menuRoot" [rootParams]="restaurantParams" tabTitle="Menu" tabIcon="ios-cart"></ion-tab>
+<ion-tabs  selectedIndex="1" color="light">
+    <ion-tab [root]="menuRoot" [rootParams]="restaurantParams" tabTitle="Menu" tabIcon="ios-cart"(ionSelect)="danger"></ion-tab>
     <ion-tab [root]="restaurantRoot" [rootParams]="restaurantParams" tabTitle="Restaurante" tabIcon="ios-restaurant"></ion-tab>
     <ion-tab [root]="reviewsRoot" [rootParams]="restaurantParams" tabTitle="Avaliações" tabIcon="ios-clipboard"></ion-tab>
 </ion-tabs>

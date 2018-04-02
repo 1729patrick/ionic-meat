@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { ReviewsPage } from './reviews';
 
 @NgModule({
-  declarations: [
-    ReviewsPage,
-  ],
-  imports: [
-    IonicPageModule.forChild(ReviewsPage),
-  ],
+    declarations: [
+        ReviewsPage,
+    ],
+    imports: [
+        IonicPageModule.forChild(ReviewsPage),
+    ],
 })
 export class ReviewsPageModule {}

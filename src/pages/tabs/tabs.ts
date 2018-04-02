@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { NavParams, NavController } from 'ionic-angular';
+import { NavParams, NavController, ToastController } from 'ionic-angular';
 import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 import { CartPage } from '../cart/cart';
 import { RestaurantDetailPage } from '../restaurant-detail/restaurant-detail';
 import { MenuPage } from '../menu/menu';
 import { ReviewsPage } from '../reviews/reviews';
 import { CartService } from '../../providers/cart/cart.service';
+import { AuthProvider } from '../../providers/auth/auth';
+import { Storage } from '@ionic/storage';
 
 @Component({
     selector: 'page-tabs',
@@ -13,7 +15,7 @@ import { CartService } from '../../providers/cart/cart.service';
 })
 export class TabsPage {
     restaurantParams: {
-        restaurantId: String;
+        id: String;
     }
     total: number = 0;
     restaurantName: String;
@@ -26,21 +28,19 @@ export class TabsPage {
         public restaurantService: RestaurantService,
         public navParams: NavParams,
         public navCtrl: NavController,
-        public cartService: CartService) {
+        public cartService: CartService,
+        public authProvider: AuthProvider,
+        public toastCtrl: ToastController,
+        public storage: Storage) {
 
             this.restaurantParams = {
-                restaurantId: this.navParams.get('restaurantId'),  //restaurantId recebe o id passado pelo restaurant
+                id: this.navParams.get('id'),  //id recebe o id passado pelo restaurant
             }
+
         }
 
-        ionViewDidLoad() {
-            console.log("Entrou em tabs.");
-
-            this.restaurantName = this.navParams.get('restaurantName')
-        }
-
-        ionViewWillLeave() {
-            console.log("Saiu de tabs.");
+        ionViewCanEnter():any {
+            return this.authProvider.userIsLogged();
         }
 
         pushCart(): void {

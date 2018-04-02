@@ -1,36 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
 export class CartService {
     total: number = 0;
-    quantity: number = 0;
+    item: Array<any> = [];
 
 
     constructor(public httpClient: HttpClient) {  }
 
     clear(): void {
-        this.total = 0;
+        this.item = [];
     }
 
-    addItem(price): void {
-        this.quantity++;
-        this.total += price;
-        this.getQuantity();
+    deleteItem(i) {
+        this.item.splice(i, 1);
+    //    this.total -= this.item[i].price;
+        console.log(i)
+        this.getTotal();
     }
 
-    addCartItems(): void  {
-
+    addItem(item): void {
+        this.item.push(item);
+        this.total += item.price;
+        this.getTotal();
     }
 
     getTotal(): number {
         return this.total;
     }
 
-    getQuantity(): number{
-        return this.total;
-    }
+
 
 }
