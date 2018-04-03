@@ -59,7 +59,6 @@ export class MenuPage {
 
 
     addCart(id):void {
-        // this.storage.set('item', JSON.stringify(this.menu[id]));
         this.cartService.addItem(this.menu[id]);
     }
 

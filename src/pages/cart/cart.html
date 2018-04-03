@@ -11,14 +11,14 @@
 <ion-content padding>
 
     <span *ngIf="total == 0">
+        <ion-img class="img" src="/assets/imgs/404.png"></ion-img>
         <!--<h5 class="text-center">Carrinho vazio!</h5>-->
-        <ion-img class="img" src="assets/imgs/404.png"></ion-img>
     </span>
 
     <span *ngIf="total > 0" class="text-center">
 
         <ion-list>
-            <ion-item *ngFor="let item of cartService.item; let i = index">
+            <ion-item *ngFor="let item of items; let i = index">
                 <ion-thumbnail item-start>
                     <img [src]="item.imagePath">
                 </ion-thumbnail>

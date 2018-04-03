@@ -14,11 +14,12 @@ import { Storage } from '@ionic/storage';
     templateUrl: 'tabs.html',
 })
 export class TabsPage {
-    restaurantParams: {
-        id: String;
-    }
     total: number = 0;
-    restaurantName: String;
+    restaurantName: string;
+
+    restaurantParams: {
+        id: string;
+    }
 
     restaurantRoot = RestaurantDetailPage;
     menuRoot = MenuPage;
@@ -36,6 +37,8 @@ export class TabsPage {
             this.restaurantParams = {
                 id: this.navParams.get('id'),  //id recebe o id passado pelo restaurant
             }
+
+            this.restaurantName = this.navParams.get('restaurantName');
 
         }
 
