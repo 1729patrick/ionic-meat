@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 import { Restaurant } from'../../providers/restaurant/restaurant.model';
 
@@ -13,24 +13,15 @@ export class RestaurantDetailPage {
 
     constructor(
         public navCtrl: NavController,
-        public restaurantService: RestaurantService,
-        public navParams: NavParams) {
+        public navParams: NavParams,
+        public restaurantService: RestaurantService) {
 
-            let id = this.navParams.data.id;
+            let id = this.navParams.data.id; //pega o id do restaurante por parametro passado pela tab
 
             this.restaurantService.restaurantById(id)
             .subscribe(restaurant => {
                 this.restaurant = restaurant;
-                console.log(this.restaurant)
             })
-        }
-
-        ionViewDidLoad() {
-            console.log("Entrou em Detalhes.")
-        }
-
-        ionViewWillLeave() {
-            console.log("Saiu de Detalhes.")
         }
 
     }

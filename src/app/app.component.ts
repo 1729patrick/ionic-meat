@@ -15,10 +15,11 @@ export class MyApp {
         platform: Platform,
         statusBar: StatusBar,
         splashScreen: SplashScreen) {
+
+            //COR DA NAVBAR DO ANDROID
             platform.ready().then(() => {
-                statusBar.overlaysWebView(true);
-                statusBar.backgroundColorByHexString("#f53d3d");
-                //splashScreen.hide();
-            });
-        }
+            statusBar.overlaysWebView(true);
+            statusBar.backgroundColorByHexString("#f53d3d");
+        });
     }
+}

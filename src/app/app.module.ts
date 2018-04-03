@@ -13,6 +13,9 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MenuPage } from '../pages/menu/menu';
 import { MyApp } from './app.component';
+import { OrderPage } from '../pages/order/order';
+import { OrderSummaryPage } from '../pages/order-summary/order-summary';
+import { NotificationProvider } from '../providers/notification/notification';
 import { RestaurantDetailPage } from '../pages/restaurant-detail/restaurant-detail';
 import { RestaurantsPage } from '../pages/restaurants/restaurants';
 import { RestaurantService } from '../providers/restaurant/restaurants.service';
@@ -29,6 +32,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
         LoginPage,
         MenuPage,
         MyApp,
+        OrderPage,
+        OrderSummaryPage,
         RestaurantDetailPage,
         RestaurantsPage,
         ReviewsPage,
@@ -55,6 +60,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
         LoginPage,
         MenuPage,
         MyApp,
+        OrderPage,
+        OrderSummaryPage,
         RestaurantDetailPage,
         RestaurantsPage,
         ReviewsPage,
@@ -63,6 +70,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
         WelcomePage,
     ],
     providers: [
+        NotificationProvider,
         AuthProvider,
         CartService,
         RestaurantService,

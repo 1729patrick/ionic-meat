@@ -392,18 +392,11 @@
       "restaurantId": "tasty-treats"
     },
     {
-      "rating": "4.5",
-      "name": "Patrick",
-      "comments": "Suco suco",
+      "rating": "5",
+      "name": "muito com ",
+      "comments": "patrick",
       "restaurantId": "bread-bakery",
-      "id": 24
-    },
-    {
-      "rating": "6",
-      "name": "Patrick",
-      "comments": "Carne ao ponto.",
-      "restaurantId": "bread-bakery",
-      "id": 25
+      "id": 30
     }
   ],
   "orders": [
@@ -419,158 +412,33 @@
         }
       ],
       "id": 1
-    }
+    },
+    [
+      {
+        "address": "Rua primeiro de maio",
+        "number": "1426",
+        "card": "cc",
+        "optionalAddress": "Centro"
+      },
+      [
+        {
+          "id": "bread",
+          "imagePath": "assets/imgs/foods/bread.png",
+          "name": "Pão Artesanal Italiano",
+          "description": "Pão artesanal com queijos italianos",
+          "price": 15.9,
+          "restaurantId": "bread-bakery"
+        }
+      ]
+    ]
   ],
-  "login": [
+  "users": [
     {
-      "username": "patrickbattisti",
-      "password": "1234",
-      "id": 1
-    },
-    {
-      "username": "patrick",
-      "password": "aps",
-      "id": 2
-    },
-    {
-      "username": "ass",
-      "password": "assa",
-      "id": 3
-    },
-    {
-      "username": "patrick",
+      "name": "patrick",
+      "email": "patrick@flexpro.com.br",
       "password": "patrick",
-      "id": 4
-    },
-    {
-      "username": "a",
-      "password": "s",
-      "id": 5
-    },
-    {
-      "username": "a",
-      "password": "s",
-      "id": 6
-    },
-    {
-      "username": "a",
-      "password": "s",
-      "id": 7
-    },
-    {
-      "username": "as",
-      "password": "asaaas",
-      "id": 8
-    },
-    {
-      "username": "as",
-      "password": "asaaas",
-      "id": 9
-    },
-    {
-      "username": "as",
-      "password": "asaaas",
-      "id": 10
-    },
-    {
-      "username": "as",
-      "password": "asaaas",
-      "id": 11
-    },
-    {
-      "username": "as",
-      "password": "as",
-      "id": 12
-    },
-    {
-      "username": "asas",
-      "password": "sasa",
-      "id": 13
-    },
-    {
-      "username": "a",
-      "password": "as",
-      "id": 14
-    },
-    {
-      "username": "A",
-      "password": "b",
-      "id": 15
-    },
-    {
-      "username": "a",
-      "password": "s",
-      "id": 16
-    },
-    {
-      "username": "Patrick",
-      "password": "apas",
-      "id": 17
-    },
-    {
-      "username": "A",
-      "password": "b",
-      "id": 18
-    },
-    {
-      "username": "patrick",
-      "password": "sosasa",
-      "id": 19
-    },
-    {
-      "username": "as",
-      "password": "assa",
-      "id": 20
-    },
-    {
-      "username": "as",
-      "password": "sa",
-      "id": 21
-    },
-    {
-      "username": "dfdf",
-      "password": "df",
-      "id": 22
-    },
-    {
-      "username": "dfdf",
-      "password": "df",
-      "id": 23
-    },
-    {
-      "username": "dfdf",
-      "password": "df",
-      "id": 24
-    },
-    {
-      "username": "dfdf",
-      "password": "df",
-      "id": 25
-    },
-    {
-      "username": "dfdf",
-      "password": "df",
-      "id": 26
-    },
-    {
-      "username": "1",
-      "password": "a",
-      "id": 27
-    },
-    {
-      "username": "asa",
-      "password": "sasa",
-      "id": 28
-    },
-    {
-      "username": "patrickbattisti",
-      "password": "1234",
-      "id": 29
-    },
-    {
-      "username": "saas",
-      "password": "asa",
-      "id": 30
+      "confirmPassword": "patrick",
+      "id": 1
     }
   ]
 }

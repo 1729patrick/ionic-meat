@@ -6,11 +6,12 @@
     </div>
 
     <div class="btnRestaurants">
-        <button ion-button color="danger" (click)="pushHome()">Ver restaurantes</button>
+        <button ion-button color="danger" round (click)="pushHome()">Ver restaurantes</button>
     </div>
 
-    <div class="btnLogin">
-        <button ion-button color="danger" outline (click)="pushLogin()">Login</button>
+    <div class="btnLogin" padding >
+        <button ion-button color="danger" round outline block (click)="pushLogin()">Login</button> <br>
+        <button ion-button color="danger" round outline block (click)="pushSignUp()">Create Account</button>
     </div>
 
 </ion-content>

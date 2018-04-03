@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
-import { RestaurantService } from '../../providers/restaurant/restaurants.service';
 import { CartService } from '../../providers/cart/cart.service';
-import { MenuItem } from '../../providers/cart/cart.model';
-
-import { Storage } from '@ionic/storage';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MenuItem } from '../../providers/cart/cart.model';
+import { NavController, NavParams, ToastController, AlertController,IonicPage } from 'ionic-angular';
+import { NotificationProvider } from '../../providers/notification/notification';
+import { RestaurantService } from '../../providers/restaurant/restaurants.service';
+import { Storage } from '@ionic/storage';
+
 
 
 @IonicPage()
@@ -17,49 +18,24 @@ export class MenuPage {
     menu: MenuItem[];
 
     constructor(
+        public alertCtrl: AlertController,
+        public cartService: CartService,
+        public httpClient: HttpClient,
         public navCtrl: NavController,
         public navParams: NavParams,
+        public notificationProvider: NotificationProvider,
         public restaurantService: RestaurantService,
-        public cartService: CartService,
-        public toastCtrl: ToastController,
-        public alertCtrl: AlertController,
         public storage: Storage,
-        public httpClient: HttpClient) {
+        public toastCtrl: ToastController) {
 
-            let id = this.navParams.data.id; //pega o id do restaurante por parametro pela tab
-            //this.access = this.navParams.data.access;
+            let id = this.navParams.data.id; //pega o id do restaurante por parametro passado pela tab
 
             this.restaurantService.restaurantMenu(id)
             .subscribe(menu => this.menu = menu);
         }
 
         confirmAdd(i): void {
-            let alert = this.alertCtrl.create({
-                title: `${this.menu[i].name}`,
-                subTitle: `${this.menu[i].description}`,
-                message: `R$${this.menu[i].price}0`,
-                buttons: [{
-                    text: 'Confirmar',
-                    handler: () => {
-                        this.addCart(i);
+            this.notificationProvider.confirmAdd(this.menu[i]);
+        }
 
-
-                        let toast = this.toastCtrl.create({
-                            message: `${this.menu[i].name} adicionado no carrinho.`,
-                            duration: 3000,
-                        });
-                        toast.present();
-                    }
-                }
-            ]
-        });
-        alert.setMode("ios");
-        alert.present();
     }
-
-
-    addCart(id):void {
-        this.cartService.addItem(this.menu[id]);
-    }
-
-}

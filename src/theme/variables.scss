@@ -38,12 +38,16 @@ primary:    #488aff,
 secondary:  #32db64,
 danger:     #f53d3d,
 light:      #f4f4f4,
-dark:       #222
+dark:       #222,
+vdanger:    #cc0000
 );
 
 $fab-size: 54px;
 
 $alert-min-width: 85%;
+
+$button-round-border-radius: 5px;
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

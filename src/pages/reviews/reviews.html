@@ -11,8 +11,11 @@
     <ion-list>
         <ion-item *ngFor="let review of reviews; let i = index" (click)="showReview(i)"><!--para pegar a posicao do comentario no array-->
             <ion-avatar item-start>
-                <img src="https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ben.png">
+                <img *ngIf="review?.rating  >= 4.5" src="assets/imgs/reactions/loved.png">
+                <img *ngIf="review?.rating  < 4.5 && review?.rating > 2.5" src="assets/imgs/reactions/soso.png">
+                <img *ngIf="review?.rating  <= 2.5" src="assets/imgs/reactions/pissed.png">
             </ion-avatar>
+
             <h3>Nota: {{ review?.rating }}</h3>
             <h3 class="justify">Comentário: {{ review?.comments }}</h3>
             <p>Nome: {{ review?.name }}</p>
