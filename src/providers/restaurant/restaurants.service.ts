@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { API } from '../../app/app.api';
-import { Restaurant } from './restaurant.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { MenuItem } from '../cart/cart.model';
+import { Observable } from 'rxjs/Observable';
+import { Restaurant } from './restaurant.model';
 
 @Injectable()
 export class RestaurantService {
 
     constructor(
-        public httpClient: HttpClient,
-    ){  }
+        public httpClient: HttpClient){  }
 
     showRestaurants(): Observable<Restaurant[]> {
         return this.httpClient.get<Restaurant[]>(`${API}/restaurants`); //para pegar todos os dados json de http://localhost:3000/restaurants
@@ -20,7 +19,7 @@ export class RestaurantService {
         return this.httpClient.get<Restaurant>(`${API}/restaurants/${id}`);
     }
 
-    restaurantReviews(id: string): Observable<any>{ //para ir ao caminho reviws aopos clicar em algum restaurante
+    restaurantReviews(id: string): Observable<any> { //para ir ao caminho reviws aopos clicar em algum restaurante
         return this.httpClient.get(`${API}/restaurants/${id}/reviews`);
     }
 
@@ -34,11 +33,11 @@ export class RestaurantService {
     restaurantMenu(id: string): Observable<MenuItem[]>{//menu de itens do restaurante
         return this.httpClient.get<MenuItem[]>(`${API}/restaurants/${id}/menu`);
     }
-    
-    newOrder(order) {
-        this.httpClient.post(`${API}/orders`, order)
+
+    newOrder(order: MenuItem) {
+        this.httpClient.post<MenuItem>(`${API}/orders`, order)
         .subscribe(data =>{
-            console.log(data)
+
         })
     }
 

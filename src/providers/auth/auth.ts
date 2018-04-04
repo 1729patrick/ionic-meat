@@ -2,41 +2,73 @@ import { API } from '../../app/app.api';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NotificationProvider } from '../notification/notification';
+import { Observable } from 'rxjs/Observable';
 import { Storage } from '@ionic/storage';
 
 
 @Injectable()
 export class AuthProvider {
-    logged: boolean = false;
+
+    users: any;
+    user: any;
 
     constructor(
         public httpClient: HttpClient,
         public notificationProvider: NotificationProvider,
-        public storage: Storage) {  }
+        public storage: Storage,
+    ) {  }
 
-        //TOKEN NO LOCAL STORAGE
-        login(credential) {
-        // this.httpClient.post(`${API}/login`, credential)
-        // .subscribe(data => {
-        this.storage.set('token', credential.password);
-        // });
+    saveToken(user) {
+        //HEADER
+        let encodedHeader =  btoa(JSON.stringify({"alg": "HS256", "typ": "JWT"}));
+
+        //PAYLOAD
+        let payload = JSON.parse(`{"email":"${user.email}", "name":"${user.name}"}`);
+        let encodedPayload = btoa(JSON.stringify(payload)); //codificar  base64
+
+        //SIGNITURE
+        let secret = btoa('eyJ1c2VySWQiOiIxNzI5IiwibmFtZSI6IlBhdHJpY2siLCJlbWFpbCI6InBhdHJpY2tAZmxleHByby5jb20uYnIifQ');
+
+
+        let token = encodedHeader + "." + encodedPayload + "." + secret;
+
+        this.storage.set('token', token);//TOKEN NO LOCAL STORAGE
+        console.log(token)
+    }
+
+    login(email, password) {
+        this.getUsers().subscribe(data => {
+            this.users = data;
+
+            this.user =  this.users.filter(function (user) {
+                return (user.password === password && user.email.toLowerCase() === email.toLowerCase()) ;
+            });
+
+            if (this.user.length){
+                this.saveToken(this.user[0]);
+                //this.navCtrl.setRoot(RestaurantsPage);
+
+                this.notificationProvider.messageDefault(`Olá ${this.user[0].name}, bem-vindo.`);
+            }else {
+                this.notificationProvider.messageDefault(`Credenciais incorretas.`);
+            }
+        });
     }
 
     createAccount(credentials){
         this.httpClient.post(`${API}/users`, credentials)
         .subscribe(data => {
-            console.log(data)
-        });
+            //console.log(data)
+        })
     }
 
-    
-    //VERIFICA SE O USUÁRIO ESTÁ LOGADO
-    userIsLogged() {
-    return this.storage.get('token').then(data => {
+
+    userIsLogged() {//VERIFICA SE O USUÁRIO ESTÁ LOGADO
+        return this.storage.get('token').then(data => {
         if (data){
             return data;
         }else {
-            this.notificationProvider.messageAuth(); //mostra a mensagem para realizar o login
+            this.notificationProvider.messageDefault('Por favor, efetue o login para continuar.'); //mostra a mensagem para realizar o login
             return false;
         }
     });
@@ -44,6 +76,10 @@ export class AuthProvider {
 
 logout() {
     this.storage.remove('token');
+}
+
+getUsers(): Observable<any>{
+    return this.httpClient.get<any>(`${API}/users`);
 }
 
 }

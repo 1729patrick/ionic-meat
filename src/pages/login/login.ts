@@ -5,9 +5,7 @@ import { NotificationProvider } from '../../providers/notification/notification'
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
 import { RestaurantsPage } from '../restaurants/restaurants';
 import { WelcomePage } from '../welcome/welcome';
-
-import { OrderSummaryPage } from '../order-summary/order-summary';
-
+import { SignupPage } from '../signup/signup';
 
 
 @IonicPage()
@@ -19,37 +17,40 @@ export class LoginPage {
     loginForm: FormGroup;
 
     constructor(
-        public authService: AuthProvider,
+        public authProvider: AuthProvider,
         public formBuilder: FormBuilder,
         public navCtrl: NavController,
         public navParams: NavParams,
         public notificationProvider: NotificationProvider,
         public toastCtrl: ToastController) {
 
-            //VALIDACAO DOS CAMPOS DE LOGIN
-            this.loginForm = this.formBuilder.group({
-            email: this.formBuilder.control('', [Validators.required, Validators.email]),
-            password: this.formBuilder.control('', [Validators.required]),
-        })
-    }
+            this.loginForm = this.formBuilder.group({    //VALIDACAO DOS CAMPOS DE LOGIN
+                email: this.formBuilder.control('', [Validators.required, Validators.email]),
+                password: this.formBuilder.control('', [Validators.required]),
+            })
 
-    login(): void {
-        if(this.loginForm.valid){
-            this.authService.login(this.loginForm.value);
-            this.navCtrl.setRoot(RestaurantsPage);
+        }
 
-            this.notificationProvider.welcomeLogin(this.loginForm.value);//mensagem de bem vindo
-        } else{
-            this.notificationProvider.credentialIncorrect();//mensagem de dados inválidos
+        login(): void {
+            if(this.loginForm.valid){
+
+                this.authProvider.login(this.loginForm.value.email, this.loginForm.value.password);
+
+                //this.navCtrl.setRoot(RestaurantsPage);
+
+
+            } else {
+                this.notificationProvider.messageDefault(`Dados inválidos.`);//mensagem de dados inválido
+            }
+        }
+
+        pushHome(): void {
+            this.navCtrl.setRoot(WelcomePage);
+        }
+
+        pushSignUp(): void {
+            this.navCtrl.setRoot(SignupPage);
         }
 
 
-
     }
-
-    pushHome(): void {
-        this.navCtrl.setRoot(OrderSummaryPage);
-    }
-
-
-}

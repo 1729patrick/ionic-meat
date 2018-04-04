@@ -40,14 +40,17 @@ export class SignupPage {
     signUp(): void {
         if(this.signUpForm.valid) {
             if(this.signUpForm.value.password == this.signUpForm.value.confirmPassword){
+                this.authProvider.saveToken(this.signUpForm.value); //para salvar a senha no storage
+                this.notificationProvider.messageDefault(`Olá ${this.signUpForm.value.name}, bem-vindo.`); //mensagem de boas vindas
                 this.authProvider.createAccount(this.signUpForm.value);//para salvar os dados no db
+
                 this.navCtrl.setRoot(RestaurantsPage);
             }else{
-                this.notificationProvider.passwordIncorrect();//mensagem de senhas diferentes
+                this.notificationProvider.messageDefault(`Senhas não coincidem.`);//mensagem de senhas diferentes
             }
 
         }else {
-            this.notificationProvider.credentialIncorrect();//mensagem de dados inválidos
+            this.notificationProvider.messageDefault(`Dados inválidos.`);//mensagem de dados inválidos
         }
 
     }

@@ -400,24 +400,11 @@
     }
   ],
   "orders": [
-    {
-      "address": "sdvsdvsdvd",
-      "number": "2",
-      "optionalAddress": "",
-      "paymentOption": "MON",
-      "OrderItems": [
-        {
-          "quantity": 1,
-          "menuId": "cup-cake"
-        }
-      ],
-      "id": 1
-    },
     [
       {
         "address": "Rua primeiro de maio",
-        "number": "1426",
-        "card": "cc",
+        "number": "1425",
+        "paymentOption": "cc",
         "optionalAddress": "Centro"
       },
       [
@@ -428,17 +415,39 @@
           "description": "Pão artesanal com queijos italianos",
           "price": 15.9,
           "restaurantId": "bread-bakery"
+        },
+        {
+          "id": "donut",
+          "imagePath": "assets/imgs/foods/donut.png",
+          "name": "Donut",
+          "description": "Coberto com chantilly",
+          "price": 2.5,
+          "restaurantId": "bread-bakery"
         }
       ]
     ]
   ],
   "users": [
     {
-      "name": "patrick",
-      "email": "patrick@flexpro.com.br",
-      "password": "patrick",
-      "confirmPassword": "patrick",
+      "name": "aAa",
+      "email": "a@a",
+      "password": "aaa",
+      "confirmPassword": "aaa",
       "id": 1
+    },
+    {
+      "name": "Patrick",
+      "email": "patrick@flexpro",
+      "password": "aaa",
+      "confirmPassword": "aaa",
+      "id": 2
+    },
+    {
+      "name": "aa@aa",
+      "email": "aa@aa",
+      "password": "aaa",
+      "confirmPassword": "aaa",
+      "id": 3
     }
   ]
 }

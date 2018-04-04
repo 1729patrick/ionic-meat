@@ -39,7 +39,4 @@ export class CartService {
             this.order.push(this.item);
             this.restaurantService.newOrder(this.order);
         }
-
-
-
     }

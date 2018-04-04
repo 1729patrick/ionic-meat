@@ -1,4 +1,3 @@
-
 <ion-header>
 
     <ion-navbar color="danger">
@@ -8,8 +7,10 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content text-center padding class="back">
+    <p class="text-size">Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está chegando!</p>
+    <img src="assets/imgs/smartfood.png">
+    <p class="text">Obrigado pela sua compra!</p>
 
-    <p>Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está chegando!</p>
-    <p>Obrigado pela sua compra!</p>
+    <button ion-button round outline icon-only color="danger" block (click)="newReview()"><p>Avalie sua experiência</p></button>
 </ion-content>

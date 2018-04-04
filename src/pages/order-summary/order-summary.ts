@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { RestaurantsPage } from '../restaurants/restaurants';
 
-/**
- * Generated class for the OrderSummaryPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
-  selector: 'page-order-summary',
-  templateUrl: 'order-summary.html',
+    selector: 'page-order-summary',
+    templateUrl: 'order-summary.html',
 })
 export class OrderSummaryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams) {
+        }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderSummaryPage');
-  }
+        newReview() {
+            this.navCtrl.setRoot(RestaurantsPage);
+        }
 
-}
+    }

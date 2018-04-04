@@ -26,8 +26,8 @@ export class OrderPage {
             this.formOrder = this.formBuilder.group({
                 address:  this.formBuilder.control('', [Validators.required, Validators.minLength(7)]),
                 number:  this.formBuilder.control('', [Validators.required]),
-                card: this.formBuilder.control('',[Validators.required]),
-                optionalAddress: this.formBuilder.control('', [ ]),
+                paymentOption: this.formBuilder.control('',[Validators.required]),
+                optionalAddress: '',
             })
 
         }
@@ -37,7 +37,7 @@ export class OrderPage {
                 this.cartService.createOrder(this.formOrder.value);
                 this.navCtrl.setRoot(OrderSummaryPage)
             } else{
-                this.notificationProvider.addressIncomplete();
+                this.notificationProvider.messageDefault(`Preencha todos os campos.`);
             }
 
         }
