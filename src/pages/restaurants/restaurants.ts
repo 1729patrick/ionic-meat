@@ -33,48 +33,47 @@ export class RestaurantsPage {
             .subscribe(restaurants => {
                 this.restaurants = restaurants; //para pegar os valor do arquivo json e salvar na variavel restaurants
             },
-            error =>{
+            error => {
                 console.log(error);
+            });
+
+            storage.get('token').then((data) => { //se o usuário estiver logado, lista de restaurante será a homepage
+                if(data) {
+                    this.userLogged =  true;
+                }else {
+                    this.userLogged =  false;
+                }
+            });
+    }
+
+    restaurantDetail(id, name): void {
+        this.navCtrl.push(TabsPage, { //passa o id e o nome do restaurant do restaurante selecionado por parametro para a tab
+            'id': id,
+            'restaurantName': name
+        });
+    }
+
+    pushLogin(): void {
+        this.navCtrl.setRoot(LoginPage)
+    }
+
+    logout(): void {
+        //this.notificationProvider.confirmExit();
+        let alert = this.alertCtrl.create({
+        title: 'Logout',
+        message: 'Tem certeza que quer sair?',
+        buttons: [
+            {
+                text: 'Sair',
+                handler: () => {
+                    this.authProvider.logout();
+                    this.navCtrl.setRoot(WelcomePage);
+                }
             }
-        );
-
-        storage.get('token').then((data) => { //se o usuário estiver logado, lista de restaurante será a homepage
-            if(data){
-            this.userLogged =  true;
-        }else{
-            this.userLogged =  false;
-        }
+        ]
     });
-}
-
-restaurantDetail(id, name): void {
-    this.navCtrl.push(TabsPage, { //passa o id e o nome do restaurant do restaurante selecionado por parametro para a tab
-        'id': id,
-        'restaurantName': name
-    });
-}
-
-pushLogin(): void {
-    this.navCtrl.setRoot(LoginPage)
-}
-
-logout(): void {
-    //this.notificationProvider.confirmExit();
-    let alert = this.alertCtrl.create({
-    title: 'Logout',
-    message: 'Tem certeza que quer sair?',
-    buttons: [
-        {
-            text: 'Sair',
-            handler: () => {
-                this.authProvider.logout();
-                this.navCtrl.setRoot(WelcomePage);
-            }
-        }
-    ]
-});
-alert.present();
-alert.setMode("ios");
+    alert.present();
+    alert.setMode("ios");
 }
 
 }

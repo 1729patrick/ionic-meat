@@ -14,6 +14,7 @@ import { WelcomePage } from '../welcome/welcome';
 })
 export class SignupPage {
     signUpForm: FormGroup;
+    users: any;
 
     constructor(
         public authProvider: AuthProvider,
@@ -40,11 +41,28 @@ export class SignupPage {
     signUp(): void {
         if(this.signUpForm.valid) {
             if(this.signUpForm.value.password == this.signUpForm.value.confirmPassword){
-                this.authProvider.saveToken(this.signUpForm.value); //para salvar a senha no storage
-                this.notificationProvider.messageDefault(`Olá ${this.signUpForm.value.name}, bem-vindo.`); //mensagem de boas vindas
-                this.authProvider.createAccount(this.signUpForm.value);//para salvar os dados no db
+                let user;
+                let email = this.signUpForm.value.email;
 
-                this.navCtrl.setRoot(RestaurantsPage);
+                this.authProvider.getUsers()
+                .subscribe(data => {
+                    this.users = data;
+
+                    user =  this.users.filter(function (user) {
+                        return user.email.toLowerCase() === email.toLowerCase() ;
+                    });
+
+                    if (!user.length){
+                        this.authProvider.saveToken(this.signUpForm.value); //para salvar a senha no storage
+                        this.notificationProvider.messageDefault(`Olá ${this.signUpForm.value.name}, bem-vindo.`); //mensagem de boas vindas
+                        this.authProvider.createAccount(this.signUpForm.value);//para salvar os dados no db
+
+                        this.navCtrl.setRoot(RestaurantsPage);
+                    }else{
+                        this.notificationProvider.messageDefault(`Email já cadastrado.`);
+                    }
+                })
+
             }else{
                 this.notificationProvider.messageDefault(`Senhas não coincidem.`);//mensagem de senhas diferentes
             }

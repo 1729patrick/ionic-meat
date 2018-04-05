@@ -390,64 +390,35 @@
       "rating": 4.5,
       "comments": "Taxa de entrega bastante elevada e precisa colocar no app se a pessoa quer porção adicional de algo (calda, crocante etc)",
       "restaurantId": "tasty-treats"
-    },
-    {
-      "rating": "5",
-      "name": "muito com ",
-      "comments": "patrick",
-      "restaurantId": "bread-bakery",
-      "id": 30
     }
   ],
   "orders": [
     [
       {
-        "address": "Rua primeiro de maio",
+        "address": "Rua Primeiro De Maio ",
         "number": "1425",
         "paymentOption": "cc",
         "optionalAddress": "Centro"
       },
       [
         {
-          "id": "bread",
-          "imagePath": "assets/imgs/foods/bread.png",
-          "name": "Pão Artesanal Italiano",
-          "description": "Pão artesanal com queijos italianos",
-          "price": 15.9,
-          "restaurantId": "bread-bakery"
-        },
-        {
-          "id": "donut",
-          "imagePath": "assets/imgs/foods/donut.png",
-          "name": "Donut",
-          "description": "Coberto com chantilly",
-          "price": 2.5,
-          "restaurantId": "bread-bakery"
+          "id": "icestd.png",
+          "imagePath": "assets/imgs/foods/icestd.png",
+          "name": "Sorvete Simples",
+          "description": "Clássico sorvete de rua onde todos os sabores são idênticos.",
+          "price": 1.5,
+          "restaurantId": "ice-cream"
         }
       ]
     ]
   ],
   "users": [
     {
-      "name": "aAa",
-      "email": "a@a",
-      "password": "aaa",
-      "confirmPassword": "aaa",
-      "id": 1
-    },
-    {
       "name": "Patrick",
-      "email": "patrick@flexpro",
-      "password": "aaa",
-      "confirmPassword": "aaa",
-      "id": 2
-    },
-    {
-      "name": "aa@aa",
-      "email": "aa@aa",
-      "password": "aaa",
-      "confirmPassword": "aaa",
-      "id": 3
+      "email": "patrick@flexpro.com.br",
+      "password": "patrick",
+      "confirmPassword": "patrick",
+      "id": 1
     }
   ]
 }

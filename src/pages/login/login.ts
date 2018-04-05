@@ -16,6 +16,12 @@ import { SignupPage } from '../signup/signup';
 export class LoginPage {
     loginForm: FormGroup;
 
+    users: any;
+
+    // passwordType: string = 'password';
+    // passwordIcon: string = 'ios-eye-off';
+
+
     constructor(
         public authProvider: AuthProvider,
         public formBuilder: FormBuilder,
@@ -33,12 +39,26 @@ export class LoginPage {
 
         login(): void {
             if(this.loginForm.valid){
+                let password =  this.loginForm.value.password;
+                let email = this.loginForm.value.email;
+                let user;
 
-                this.authProvider.login(this.loginForm.value.email, this.loginForm.value.password);
+                this.authProvider.getUsers()
+                .subscribe(data => {
+                    this.users = data;
 
-                //this.navCtrl.setRoot(RestaurantsPage);
+                    user =  this.users.filter(function (user) {
+                        return (user.password === password && user.email.toLowerCase() === email.toLowerCase()) ;
+                    });
 
-
+                    if (user.length){
+                        this.authProvider.saveToken(user[0]);
+                        this.notificationProvider.messageDefault(`Olá ${user[0].name}, bem-vindo.`);
+                        this.navCtrl.setRoot(RestaurantsPage);
+                    }else {
+                        this.notificationProvider.messageDefault(`Credenciais incorretas.`);
+                    }
+                });
             } else {
                 this.notificationProvider.messageDefault(`Dados inválidos.`);//mensagem de dados inválido
             }
@@ -52,5 +72,8 @@ export class LoginPage {
             this.navCtrl.setRoot(SignupPage);
         }
 
-
+        // hideShowPassword() {
+        //     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+        //     this.passwordIcon = this.passwordIcon === 'ios-eye-off' ? 'ios-eye' : 'ios-eye-off';
+        // }
     }

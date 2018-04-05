@@ -23,9 +23,11 @@
         <ion-item>
             <ion-label floating>Password</ion-label>
             <ion-input type="password" formControlName="password"></ion-input>
+            <!-- <ion-input [type]="passwordType" formControlName="password"></ion-input>
+            <ion-icon [name]="passwordIcon" item-right (click)="hideShowPassword()"></ion-icon> -->
         </ion-item>
     </form>
-    
+
     <div class="margin-top">
         <button ion-button color="danger" block outline (click)="login()">Login</button>
         <br><button ion-button color="danger" block outline (click)="pushSignUp()">Create Account</button>

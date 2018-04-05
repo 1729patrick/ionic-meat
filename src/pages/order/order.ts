@@ -35,6 +35,7 @@ export class OrderPage {
         createOrder(): void{
             if (this.formOrder.valid){
                 this.cartService.createOrder(this.formOrder.value);
+                this.cartService.clear();
                 this.navCtrl.setRoot(OrderSummaryPage)
             } else{
                 this.notificationProvider.messageDefault(`Preencha todos os campos.`);

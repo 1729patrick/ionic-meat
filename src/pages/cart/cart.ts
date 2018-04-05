@@ -33,11 +33,6 @@ export class CartPage {
             this.total = this.cartService.getTotal();
         }
 
-        clearCart():void {
-            this.cartService.clear();
-            this.total = this.cartService.getTotal();
-        }
-
         newOrder() {
             this.navCtrl.push(OrderPage);
         }

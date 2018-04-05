@@ -37,7 +37,7 @@ export class ReviewsPage {
             this.notificationProvider.showReview(this.reviews[i]);
         }
 
-        newReview(){
+        newReview() {
             this.notificationProvider.newReview(this.id);
         }
     }
